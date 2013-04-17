@@ -1,17 +1,15 @@
-# typekit-load [![Build Status](https://secure.travis-ci.org/heyday/typekit-load.png)](http://travis-ci.org/heyday/typekit-load)
+# procession
 
-An asynchronous Typekit loader that gives you success and error callback functions, styling hooks via classes on your HTML tag, and times out if the CDN goes down. **typekit-load** has a full unit test suite that passes in all popular browsers (and some not so popular browsers including IE6+), and is **under 720bytes** (including dependencies) when compiled with Uglify2 and gzipped.
-
-This library is made to be as small as possible so it can be inlined into the head of your `<html>` tag to initialise the loading of your fonts before even your css loads. **typekit-load** depends on the [async-load](https://github.com/heyday/async-load) and [dom-class](https://github.com/heyday/dom-class) libraries, these will be automatically installed with Bower or are included with the minified file.
+A single state queuing system.
 
 
 ## Quick Start
 
 Three options are available for getting the source:
 
-* [Download the latest release](https://github.com/heyday/typekit-load/zipball/master).
-* Clone the repo: `git clone git://github.com/heyday/typekit-load.git`.
-* Install with [Bower](http://twitter.github.com/bower): `bower install typekit-load`.
+* [Download the latest release](https://github.com/heyday/procession/zipball/master).
+* Clone the repo: `git clone git://github.com/heyday/procession.git`.
+* Install with [Bower](http://twitter.github.com/bower): `bower install procession`. **-- Not working yet**
 
 ### AMD
 
@@ -19,45 +17,30 @@ Three options are available for getting the source:
 
 	```javascript
 	packages: [
-		{ name: 'typekit-load', location: 'path/to/typekit-load/', main: 'load' },
+		{ name: 'procession', location: 'path/to/procession/', main: 'procession' },
 		// ... other packages ...
 	]
 	```
 
-1. `define( [ 'typekit-load', ... ], function( typekitLoad, ... ) { ... } );` or `require( [ 'typekit-load', ... ], function( typekitLoad, ... ) { ... } );`
+1. `define( [ 'procession', ... ], function( Procession, ... ) { ... } );` or `require( [ 'procession', ... ], function( Procession, ... ) { ... } );`
 
 ### Script Tag
 
-1. `<script src="path/to/typekit-load/load.min.js"></script>`
-1. `typekit-load` will be available as `window.typekitLoad`
+1. `<script src="path/to/procession/procession.min.js"></script>`
+1. `procession` will be available as `window.Procession`
 
 
 ## API
 
 ```javascript
-typekitLoad( 'my-typekit-id', mySuccessFunction, myErrorFunction );
+var procession = new Procession();
+
+procession.queue( load, unload, options );
 ```
 
-### Basic load
-To load a Typekit font kit, you simply call the `typekitLoad` function passing in the Typekit ID.
+### Example usage
+Creating a tab system with jQuery.
 
-###### AMD environment:
-```javascript
-define( [ 'typekit-load' ], function( typekitLoad ) {
-	typekitLoad( 'my-typekit-id' );
-} );
-```
-
-###### Browser global:
-```javascript
-window.typekitLoad( 'my-typekit-id' );
-```
-
-### Load with success callback
-The second argument accepts a callback function which will be called when the font kit has successfully downloaded and initialised.
-
-
-procession
 ```javascript
 var banner = new Procession();
 
