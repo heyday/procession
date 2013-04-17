@@ -24,37 +24,36 @@ define( [ 'when' ], function( when ) {
 
 	Procession.prototype = {
 
-		_queue: function( load, unload, options ) {
+		_AddToQueue: function( load, unload, options ) {
 			var promise;
 
 			options = options || {};
 
-			promise = this._getFirstFromQueue();
+			promise = this._getFirstFromQueue()
+				.then( function( prevous ) {
+					var load_promise, unload_promise;
 
-			promise.then( function( prevous ) {
-				var load_promise, unload_promise;
+					prevous = prevous || { options: {} };
 
-				prevous = prevous || { options: {} };
+					options.prevous = prevous.options;
 
-				options.prevous = prevous.options;
+					if ( isFunction( prevous.unload ) ) {
+						unload_promise = when( prevous.unload( options ) ).yield();
+					} else {
+						unload_promise = when.resolve();
+					}
 
-				if ( isFunction( prevous.unload ) ) {
-					unload_promise = when( prevous.unload( options ) ).yield();
-				} else {
-					unload_promise = when.resolve();
-				}
+					if ( isFunction( load ) ) {
+						load_promise = when( load( options, unload_promise ) );
+					}
 
-				if ( isFunction( load ) ) {
-					load_promise = when( load( options, unload_promise ) );
-				}
-
-				return when.all( [ unload_promise, load_promise ] )
-					.yield( {
-						load: load,
-						unload: unload,
-						options: options
-					} );
-			} );
+					return when.all( [ unload_promise, load_promise ] )
+						.yield( {
+							load: load,
+							unload: unload,
+							options: options
+						} );
+				} );
 
 			this._addToQueue( promise );
 
@@ -74,7 +73,7 @@ define( [ 'when' ], function( when ) {
 		},
 
 		queue: function( load, unload, options ) {
-			return this._queue( load, unload, options );
+			return this._AddToQueue( load, unload, options );
 		}
 
 	};
