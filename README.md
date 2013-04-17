@@ -61,8 +61,8 @@ banner.queue(
 $( '.banner-select' ).click( function( e ) {
 	var $banner, banner_id;
 
-	 banner_id = $( el ).data( 'bannerId' );
-	 $banner = $( '#' + banner_id );
+	banner_id = $( el ).data( 'bannerId' );
+	$banner = $( '#' + banner_id );
 
 	e.preventDefault();
 
