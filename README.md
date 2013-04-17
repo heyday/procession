@@ -39,7 +39,7 @@ procession.queue( load, unload, options );
 ```
 
 ### Example usage
-Creating a tab system with jQuery.
+Creating a banner system with jQuery.
 
 ```javascript
 var banner = new Procession();
@@ -47,7 +47,7 @@ var banner = new Procession();
 banner.queue(
 	null,
 	function( options ) {
-		var $el = $( '.tabs:visible' );
+		var $el = $( '.banner:visible' );
 
 		// Animate out
 		$el.fadeOut( options.speed );
@@ -58,8 +58,13 @@ banner.queue(
 );
 
 
-$( '.tabs' ).click( function( el ) {
-	var $el = $( el );
+$( '.banner-select' ).click( function( e ) {
+	var $banner, banner_id;
+
+	 banner_id = $( el ).data( 'bannerId' );
+	 $banner = $( '#' + banner_id );
+
+	e.preventDefault();
 
 	banner.queue(
 		function( options, unload_promise ) { // Load
@@ -67,17 +72,17 @@ $( '.tabs' ).click( function( el ) {
 			return unload_promise.then( function() {
 
 				// Animate in
-				$el.fadeIn( options.speed );
+				$banner.fadeIn( options.speed );
 
-				return $el.promise( 'fx' );
+				return $banner.promise( 'fx' );
 			} );
 		},
 		function( options ) { // Unload
 
 			// Animate out
-			$el.fadeOut( options.speed );
+			$banner.fadeOut( options.speed );
 
-			return $el.promise( 'fx' );
+			return $banner.promise( 'fx' );
 		},
 		{ speed: 'fast' }
 	);
