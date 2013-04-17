@@ -1,0 +1,40 @@
+{
+  "name": "procession",
+  "version": "0.1.0",
+  "main": [ "procession.js" ],
+  "description": "A single state queuing system",
+  "keywords": [],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://heyday.mit-license.org/"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/heyday/procession"
+    }
+  ],
+  "bugs": "https://github.com/heyday/procession/issues",
+  "maintainers": [
+    {
+      "name": "Pieter Vanderwerff"
+    }
+  ],
+	"dependencies": {
+		"when": ">=1.8.0"
+	},
+  "devDependencies": {
+    "buster": "~0.6",
+    "buster-amd": "~0.3.0",
+    "requirejs": "~2.1.0",
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-plugin-buster": "~2.0.0",
+    "grunt-contrib-uglify": "~0.1.1"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}

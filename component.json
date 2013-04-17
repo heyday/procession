@@ -1,0 +1,35 @@
+{
+	"name": "procession",
+	"version": "0.1.0",
+	"main": [ "procession.js" ],
+	"description": "A single state queuing system",
+	"keywords": [],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://heyday.mit-license.org/"
+		}
+	],
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/heyday/procession"
+		}
+	],
+	"bugs": "https://github.com/heyday/procession/issues",
+	"maintainers": [
+		{
+			"name": "Pieter Vanderwerff"
+		}
+	],
+  "dependencies": {
+    "when": ">=1.8.0"
+  },
+  "ignore": [
+    "test/",
+    ".gitignore",
+    ".travis.yml",
+    "Gruntfile.js",
+    "package.json"
+  ]
+}
