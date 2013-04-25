@@ -45,6 +45,9 @@ define( [ 'when' ], function( when ) {
 
 					if ( isFunction( load ) ) {
 						load_promise = when( load( options, unload_promise ) );
+					} else {
+						// IE8 seems to fail if this is not manually defined
+						load_promise = when.resolve();
 					}
 
 					return when.all( [ unload_promise, load_promise ] )
