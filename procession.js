@@ -24,7 +24,7 @@ define( [ 'when' ], function( when ) {
 
 	Procession.prototype = {
 
-		_AddToQueue: function( load, unload, options ) {
+		_add: function( load, unload, options ) {
 			var promise;
 
 			options = options || {};
@@ -73,7 +73,7 @@ define( [ 'when' ], function( when ) {
 		},
 
 		queue: function( load, unload, options ) {
-			return this._AddToQueue( load, unload, options );
+			return this._add( load, unload, options );
 		}
 
 	};
